@@ -13,3 +13,15 @@ class Lokasi(models.Model):
 class Elemen1(models.Model):
     e1id = models.AutoField(primary_key=True)
     e1 = models.TextField()
+
+class Elemen2(models.Model):
+    e2id = models.AutoField(primary_key=True)
+    e2 = models.TextField()
+
+class Elemen3(models.Model):
+    e3id = models.AutoField(primary_key=True)
+    e3 = models.TextField()
+
+class Elemen4(models.Model):
+    e4id = models.AutoField(primary_key=True)
+    e4 = models.TextField()

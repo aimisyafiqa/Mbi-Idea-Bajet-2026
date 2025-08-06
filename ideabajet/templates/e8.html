@@ -162,16 +162,11 @@
     </div>
     <form id="createForm" method="post" style="display:none; margin-bottom:16px;">
         {% csrf_token %}
-<<<<<<< HEAD
         <input type="text" name="e8" placeholder="Tambah Elemen Baharu" required>
-=======
-        <input type="text" name="e7" placeholder="Tambah Elemen Baharu" required>
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
         <button type="submit" class="btn-create">Save</button>
     </form>
     <table class="table table-bordered" id="item_table1">
         <tr>
-<<<<<<< HEAD
             <th>Senarai Elemen 8: Pembangunan Ekonomi Masyarakat</th>
             <th>Action</th>
         </tr>
@@ -184,20 +179,6 @@
       {% csrf_token %}
       <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
     </form>
-=======
-            <th>Senarai Elemen 7</th>
-            <th>Action</th>
-        </tr>
-        {% for item in data %}
-        <tr>
-          <td>{{ item.e7 }}</td>
-          <td>
-        <button class="btn-create" onclick="editRow({{ item.e7id }})">Edit</button>
-        <form method="post" action="{% url 'delete_e7' item.e7id %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-        </form>
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
     </td>
 </tr>
 {% empty %}
@@ -211,7 +192,6 @@
 <script>
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
-<<<<<<< HEAD
 
 function editRow(id, e8) {
   var editUrl = "{% url 'edit_e8' 0 %}".replace('0', id);
@@ -238,8 +218,6 @@ function cancelEdit(id, e8) {
     </form>
   `;
 }
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 </script>
 
 </body>

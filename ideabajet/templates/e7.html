@@ -169,7 +169,6 @@
             <th>Senarai Elemen 7</th>
             <th>Action</th>
         </tr>
-<<<<<<< HEAD
                {% for item in data %}
 <tr id="row-{{ item.e7id }}">
   <td id="lokasi-{{ item.e7id }}">{{ item.e7 }}</td>
@@ -179,17 +178,6 @@
       {% csrf_token %}
       <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
     </form>
-=======
-        {% for item in data %}
-        <tr>
-          <td>{{ item.e7 }}</td>
-          <td>
-        <button class="btn-create" onclick="editRow({{ item.e7id }})">Edit</button>
-        <form method="post" action="{% url 'delete_e7' item.e7id %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-        </form>
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
     </td>
 </tr>
 {% empty %}
@@ -203,7 +191,6 @@
 <script>
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
-<<<<<<< HEAD
 
 function editRow(id, e7) {
   var editUrl = "{% url 'edit_e7' 0 %}".replace('0', id);
@@ -230,8 +217,6 @@ function cancelEdit(id, e7) {
     </form>
   `;
 }
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 </script>
 
 </body>

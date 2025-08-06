@@ -6,24 +6,21 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('lokasi', views.lokasi, name='lokasi'),
     path('lokasi/delete/<int:lid>/', views.delete_lokasi, name='delete_lokasi'),
-<<<<<<< HEAD
     path('lokasi/edit/<int:lid>/', views.edit_lokasi, name='edit_lokasi'),
     path('aset', views.aset, name='aset'),
     path('aset/delete/<int:asetid>/', views.delete_aset, name='delete_aset'),
     path('aset/edit/<int:asetid>/', views.edit_aset, name='edit_aset'),
-=======
-    path('aset', views.aset, name='aset'),
-    path('aset/delete/<int:asetid>/', views.delete_aset, name='delete_aset'),
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
     path('e1', views.e1, name='e1'),
     path('e1/delete/<int:e1id>/', views.delete_e1, name='delete_e1'),
+    path('e1/edit/<int:e1id>/', views.edit_e1, name='edit_e1'),
     path('e2', views.e2, name='e2'),
     path('e2/delete/<int:e2id>/', views.delete_e2, name='delete_e2'),
+    path('e2/edit/<int:e2id>/', views.edit_e2, name='edit_e2'),
     path('e3', views.e3, name='e3'),
     path('e3/delete/<int:e3id>/', views.delete_e3, name='delete_e3'),
+    path('e3/edit/<int:e3id>/', views.edit_e3, name='edit_e3'),
     path('e4', views.e4, name='e4'),
     path('e4/delete/<int:e4id>/', views.delete_e4, name='delete_e4'),
-<<<<<<< HEAD
     path('e4/edit/<int:e4id>/', views.edit_e4, name='edit_e4'),
     path("", views.logout, name="logout"),
     path('e5', views.e5, name='e5'),
@@ -38,14 +35,4 @@ urlpatterns = [
     path('e8', views.e8, name='e8'),
     path('e8/delete/<int:e8id>/', views.delete_e8, name='delete_e8'),
     path('e8/edit/<int:e8id>/', views.edit_e8, name='edit_e8'),
-=======
-    path('e5', views.e5, name='e5'),
-    path('e5/delete/<int:e5id>/', views.delete_e5, name='delete_e5'),
-    path('e6', views.e6, name='e6'),
-    path('e6/delete/<int:e6id>/', views.delete_e6, name='delete_e6'),
-    path('e7', views.e7, name='e7'),
-    path('e7/delete/<int:e7id>/', views.delete_e7, name='delete_e7'),
-    path('e8', views.e8, name='e8'),
-    path('e8/delete/<int:e8id>/', views.delete_e8, name='delete_e8'),
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 ]

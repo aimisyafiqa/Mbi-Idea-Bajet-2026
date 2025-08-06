@@ -11,16 +11,15 @@ def login(request):
         try:
             admin = Admin.objects.get(adminid=adminid, password=password)
             request.session['id'] = admin.adminid  # simpan dalam session
-            messages.success(request, "Succesfully Login.", extra_tags='user')
+            messages.success(request, "Succesfully Login.", extra_tags='admin')
             return render(request,'dashboard.html', {'message': 'Sucessfully Login'})  # ganti dengan nama URL dashboard admin awak
         except Admin.DoesNotExist:
-            return render(request, 'login.html', {'message': 'Invalid Admin ID or Password'}, extra_tags='user')
+            return render(request, 'login.html', {'message': 'Invalid Admin ID or Password',})
     return render (request,"login.html")
 
 def dashboard(request):
     return render(request,"dashboard.html")
 
-<<<<<<< HEAD
 def lokasi(request):
     if request.method == 'POST':
         listloc = request.POST.get('list_lokasi')
@@ -61,8 +60,6 @@ def edit_aset(request, asetid):
             Aset.objects.filter(asetid=asetid).update(aset=value)
     return redirect('aset')
 
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 def e1(request):
     if request.method == 'POST':
         liste1 = request.POST.get('e1')
@@ -74,6 +71,13 @@ def e1(request):
 
 def delete_e1(request, e1id):
     Elemen1.objects.filter(e1id=e1id).delete()
+    return redirect('e1')
+
+def edit_e1(request, e1id):
+    if request.method == 'POST':
+        liste1 = request.POST.get('e1')
+        if liste1:
+            Elemen1.objects.filter(e1id=e1id).update(e1=liste1)
     return redirect('e1')
 
 def e2(request):
@@ -89,6 +93,13 @@ def delete_e2(request, e2id):
     Elemen2.objects.filter(e2id=e2id).delete()
     return redirect('e2')
 
+def edit_e2(request, e2id):
+    if request.method == 'POST':
+        value = request.POST.get('e2')
+        if value:
+            Elemen2.objects.filter(e2id=e2id).update(e2=value)
+    return redirect('e2')
+
 def e3(request):
     if request.method == 'POST':
         liste3 = request.POST.get('e3')
@@ -100,6 +111,13 @@ def e3(request):
 
 def delete_e3(request, e3id):
     Elemen3.objects.filter(e3id=e3id).delete()
+    return redirect('e3')
+
+def edit_e3(request, e3id):
+    if request.method == 'POST':
+        value = request.POST.get('e3')
+        if value:
+            Elemen3.objects.filter(e3id=e3id).update(e3=value)
     return redirect('e3')
 
 def e4(request):
@@ -115,9 +133,8 @@ def delete_e4(request, e4id):
     Elemen4.objects.filter(e4id=e4id).delete()
     return redirect('e4')
 
-def e5(request):
+def edit_e4(request, e4id):
     if request.method == 'POST':
-<<<<<<< HEAD
         value = request.POST.get('e4')
         if value:
             Elemen4.objects.filter(e4id=e4id).update(e4=value)
@@ -125,8 +142,6 @@ def e5(request):
 
 def e5(request):
     if request.method == 'POST':
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
         liste5 = request.POST.get('e5')
         if liste5:
             Elemen5.objects.create(e5=liste5)
@@ -138,7 +153,6 @@ def delete_e5(request, e5id):
     Elemen5.objects.filter(e5id=e5id).delete()
     return redirect('e5')
 
-<<<<<<< HEAD
 def edit_e5(request, e5id):
     if request.method == 'POST':
         value = request.POST.get('e5')
@@ -146,8 +160,6 @@ def edit_e5(request, e5id):
             Elemen5.objects.filter(e5id=e5id).update(e5=value)
     return redirect('e5')
 
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 def e6(request):
     if request.method == 'POST':
         liste6 = request.POST.get('e6')
@@ -161,7 +173,6 @@ def delete_e6(request, e6id):
     Elemen6.objects.filter(e6id=e6id).delete()
     return redirect('e6')
 
-<<<<<<< HEAD
 def edit_e6(request, e6id):
     if request.method == 'POST':
         value = request.POST.get('e6')
@@ -169,8 +180,6 @@ def edit_e6(request, e6id):
             Elemen6.objects.filter(e6id=e6id).update(e6=value)
     return redirect('e6')
 
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 def e7(request):
     if request.method == 'POST':
         liste7 = request.POST.get('e7')
@@ -184,7 +193,6 @@ def delete_e7(request, e7id):
     Elemen7.objects.filter(e7id=e7id).delete()
     return redirect('e7')
 
-<<<<<<< HEAD
 def edit_e7(request, e7id):
     if request.method == 'POST':
         value = request.POST.get('e7')
@@ -192,8 +200,6 @@ def edit_e7(request, e7id):
             Elemen7.objects.filter(e7id=e7id).update(e7=value)
     return redirect('e7')
 
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 def e8(request):
     if request.method == 'POST':
         liste8 = request.POST.get('e8')
@@ -207,7 +213,6 @@ def delete_e8(request, e8id):
     Elemen8.objects.filter(e8id=e8id).delete()
     return redirect('e8')
 
-<<<<<<< HEAD
 def edit_e8(request, e8id):
     if request.method == 'POST':
         value = request.POST.get('e8')
@@ -221,30 +226,3 @@ def logout(request):
     except KeyError:
         pass 
     return redirect('login')  
-=======
-def lokasi(request):
-    if request.method == 'POST':
-        listloc = request.POST.get('list_lokasi')
-        if listloc:
-            Lokasi.objects.create(list_lokasi=listloc)
-            return redirect('lokasi')
-    data = Lokasi.objects.all()
-    return render(request, 'lokasi.html', {'data': data})
-
-def delete_lokasi(request, lid):
-    Lokasi.objects.filter(lid=lid).delete()
-    return redirect('lokasi')
-
-def aset(request):
-    if request.method == 'POST':
-        listaset = request.POST.get('list_aset')
-        if listaset:
-            Aset.objects.create(list_aset=listaset)
-            return redirect('aset')
-    data = Aset.objects.all()
-    return render(request, 'aset.html', {'data': data})
-
-def delete_aset(request, asetid):
-    Aset.objects.filter(asetid=asetid).delete()
-    return redirect('aset')
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3

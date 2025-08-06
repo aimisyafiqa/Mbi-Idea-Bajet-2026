@@ -7,7 +7,7 @@
   <title>ASET</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <style>
-    * {
+   * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -15,6 +15,7 @@
 
     body {
       font-family: Arial, sans-serif;
+      
     }
 
     .header {
@@ -99,7 +100,6 @@
 .table td {
   color: #222;
 }
-
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -167,19 +167,19 @@
     </form>
     <table class="table table-bordered" id="item_table1">
         <tr>
-            <th>Senarai Lokasi</th>
+            <th>Senarai Aset</th>
             <th>Action</th>
         </tr>
-        {% for item in data %}
-        <tr>
-          <td>{{ item.list_aset }}</td>
-          <td>
-        <button class="btn-create" onclick="editRow({{ item.asetid }})">Edit</button>
-        <form method="post" action="{% url 'delete_lokasi' item.asetid %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-        </form>
-    </td>
+{% for item in data %}
+<tr id="row-{{ item.asetid }}">
+  <td id="lokasi-{{ item.asetid }}">{{ item.aset }}</td>
+  <td id="action-{{ item.asetid }}">
+    <button class="btn-create" onclick="editRow({{ item.asetid }}, '{{ item.e2aset|escapejs }}')">Edit</button>
+    <form method="post" action="{% url 'delete_aset' item.asetid %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
+    </form>
+  </td>
 </tr>
 {% empty %}
 <tr>
@@ -192,7 +192,6 @@
 <script>
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
-<<<<<<< HEAD
 
 function editRow(id, aset) {
   var editUrl = "{% url 'edit_aset' 0 %}".replace('0', id);
@@ -219,8 +218,6 @@ function cancelEdit(id, aset) {
     </form>
   `;
 }
-=======
->>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 </script>
 
 </body>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LOKASI</title>
+  <title>ASET</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <style>
     * {
@@ -99,6 +99,7 @@
 .table td {
   color: #222;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -128,7 +129,7 @@
   background-color: #e1e7ec;
 }
   
-  </style>
+</style>
 </head>
 <body>
 
@@ -161,7 +162,7 @@
     </div>
     <form id="createForm" method="post" style="display:none; margin-bottom:16px;">
         {% csrf_token %}
-        <input type="text" name="list_lokasi" placeholder="Tambah Lokasi Baharu" required>
+        <input type="text" name="list_aset" placeholder="Tambah Lokasi Baharu" required>
         <button type="submit" class="btn-create">Save</button>
     </form>
     <table class="table table-bordered" id="item_table1">
@@ -169,16 +170,16 @@
             <th>Senarai Lokasi</th>
             <th>Action</th>
         </tr>
-      {% for item in data %}
-<tr id="row-{{ item.lid }}">
-  <td id="lokasi-{{ item.lid }}">{{ item.list_lokasi }}</td>
-  <td id="action-{{ item.lid }}">
-    <button class="btn-create" onclick="editRow({{ item.lid }}, '{{ item.list_lokasi|escapejs }}')">Edit</button>
-    <form method="post" action="{% url 'delete_lokasi' item.lid %}" style="display:inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-    </form>
-  </td>
+        {% for item in data %}
+        <tr>
+          <td>{{ item.list_aset }}</td>
+          <td>
+        <button class="btn-create" onclick="editRow({{ item.asetid }})">Edit</button>
+        <form method="post" action="{% url 'delete_lokasi' item.asetid %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
+        </form>
+    </td>
 </tr>
 {% empty %}
 <tr>
@@ -192,26 +193,25 @@
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
 
-function editRow(id, lokasi) {
-  // Get the base URL for edit_lokasi with a placeholder
-  var editUrl = "{% url 'edit_lokasi' 0 %}".replace('0', id);
+function editRow(id, aset) {
+  var editUrl = "{% url 'edit_aset' 0 %}".replace('0', id);
   document.getElementById('lokasi-' + id).innerHTML = `
     <form id="editForm-${id}" method="post" action="` + editUrl + `" style="display:inline;">
       {% csrf_token %}
-      <input type="text" name="list_lokasi" value="` + lokasi + `" required>
+      <input type="text" name="aset" value="` + aset + `" required>
     </form>
   `;
   document.getElementById('action-' + id).innerHTML = `
     <button type="submit" form="editForm-${id}" class="btn-create">Save</button>
-    <button type="button" class="btn-create" style="background:#e74c3c;" onclick="cancelEdit(${id}, '${lokasi.replace(/'/g, "\\'")}')">Cancel</button>
+    <button type="button" class="btn-create" style="background:#e74c3c;" onclick="cancelEdit(${id}, '${aset.replace(/'/g, "\\'")}')">Cancel</button>
   `;
 }
 
-function cancelEdit(id, lokasi) {
-  var deleteUrl = "{% url 'delete_lokasi' 0 %}".replace('0', id);
-  document.getElementById('lokasi-' + id).textContent = lokasi;
+function cancelEdit(id, aset) {
+  var deleteUrl = "{% url 'delete_aset' 0 %}".replace('0', id);
+  document.getElementById('lokasi-' + id).textContent = aset;
   document.getElementById('action-' + id).innerHTML = `
-    <button class="btn-create" onclick="editRow(${id}, '${lokasi.replace(/'/g, "\\'")}')">Edit</button>
+    <button class="btn-create" onclick="editRow(${id}, '${aset.replace(/'/g, "\\'")}')">Edit</button>
     <form method="post" action="` + deleteUrl + `" style="display:inline;">
       {% csrf_token %}
       <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>

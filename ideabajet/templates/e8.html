@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LOKASI</title>
+  <title>ELEMEN 7</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <style>
     * {
@@ -99,6 +99,7 @@
 .table td {
   color: #222;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -161,24 +162,24 @@
     </div>
     <form id="createForm" method="post" style="display:none; margin-bottom:16px;">
         {% csrf_token %}
-        <input type="text" name="list_lokasi" placeholder="Tambah Lokasi Baharu" required>
+        <input type="text" name="e8" placeholder="Tambah Elemen Baharu" required>
         <button type="submit" class="btn-create">Save</button>
     </form>
     <table class="table table-bordered" id="item_table1">
         <tr>
-            <th>Senarai Lokasi</th>
+            <th>Senarai Elemen 8: Pembangunan Ekonomi Masyarakat</th>
             <th>Action</th>
         </tr>
-      {% for item in data %}
-<tr id="row-{{ item.lid }}">
-  <td id="lokasi-{{ item.lid }}">{{ item.list_lokasi }}</td>
-  <td id="action-{{ item.lid }}">
-    <button class="btn-create" onclick="editRow({{ item.lid }}, '{{ item.list_lokasi|escapejs }}')">Edit</button>
-    <form method="post" action="{% url 'delete_lokasi' item.lid %}" style="display:inline;">
+               {% for item in data %}
+<tr id="row-{{ item.e8id }}">
+  <td id="lokasi-{{ item.e8id }}">{{ item.e8 }}</td>
+  <td id="action-{{ item.e8id }}">
+    <button class="btn-create" onclick="editRow({{ item.e8id }}, '{{ item.e8|escapejs }}')">Edit</button>
+    <form method="post" action="{% url 'delete_e8' item.e8id %}" style="display:inline;">
       {% csrf_token %}
       <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
     </form>
-  </td>
+    </td>
 </tr>
 {% empty %}
 <tr>
@@ -192,26 +193,25 @@
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
 
-function editRow(id, lokasi) {
-  // Get the base URL for edit_lokasi with a placeholder
-  var editUrl = "{% url 'edit_lokasi' 0 %}".replace('0', id);
+function editRow(id, e8) {
+  var editUrl = "{% url 'edit_e8' 0 %}".replace('0', id);
   document.getElementById('lokasi-' + id).innerHTML = `
     <form id="editForm-${id}" method="post" action="` + editUrl + `" style="display:inline;">
       {% csrf_token %}
-      <input type="text" name="list_lokasi" value="` + lokasi + `" required>
+      <input type="text" name="e5" value="` + e8 + `" required>
     </form>
   `;
   document.getElementById('action-' + id).innerHTML = `
     <button type="submit" form="editForm-${id}" class="btn-create">Save</button>
-    <button type="button" class="btn-create" style="background:#e74c3c;" onclick="cancelEdit(${id}, '${lokasi.replace(/'/g, "\\'")}')">Cancel</button>
+    <button type="button" class="btn-create" style="background:#e74c3c;" onclick="cancelEdit(${id}, '${e8.replace(/'/g, "\\'")}')">Cancel</button>
   `;
 }
 
-function cancelEdit(id, lokasi) {
-  var deleteUrl = "{% url 'delete_lokasi' 0 %}".replace('0', id);
-  document.getElementById('lokasi-' + id).textContent = lokasi;
+function cancelEdit(id, e8) {
+  var deleteUrl = "{% url 'delete_e8' 0 %}".replace('0', id);
+  document.getElementById('lokasi-' + id).textContent = e8;
   document.getElementById('action-' + id).innerHTML = `
-    <button class="btn-create" onclick="editRow(${id}, '${lokasi.replace(/'/g, "\\'")}')">Edit</button>
+    <button class="btn-create" onclick="editRow(${id}, '${e5.replace(/'/g, "\\'")}')">Edit</button>
     <form method="post" action="` + deleteUrl + `" style="display:inline;">
       {% csrf_token %}
       <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>

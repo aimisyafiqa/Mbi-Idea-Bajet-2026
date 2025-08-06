@@ -25,3 +25,23 @@ class Elemen3(models.Model):
 class Elemen4(models.Model):
     e4id = models.AutoField(primary_key=True)
     e4 = models.TextField()
+
+class Aset(models.Model):
+    asetid = models.AutoField(primary_key=True)
+    list_aset = models.CharField(max_length=255)
+
+class Elemen5(models.Model):
+    e5id = models.AutoField(primary_key=True)
+    e5 = models.TextField()
+
+class Elemen6(models.Model):
+    e6id = models.AutoField(primary_key=True)
+    e6 = models.TextField()
+
+class Elemen7(models.Model):
+    e7id = models.AutoField(primary_key=True)
+    e7 = models.TextField()
+
+class Elemen8(models.Model):
+    e8id = models.AutoField(primary_key=True)
+    e8 = models.TextField()

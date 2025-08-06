@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from . models import Admin, Elemen1, Lokasi, Elemen2, Elemen3, Elemen4
+from . models import Admin, Elemen1, Lokasi, Elemen2, Elemen3, Elemen4, Elemen5, Elemen6, Elemen7, Elemen8, Aset
 # Create your views here.
 
 def login(request):
@@ -39,6 +39,26 @@ def edit_lokasi(request, lid):
         if listloc:
             Lokasi.objects.filter(lid=lid).update(list_lokasi=listloc)
     return redirect('lokasi')
+
+def aset(request):
+    if request.method == 'POST':
+        listaset = request.POST.get('list_aset')
+        if listaset:
+            Aset.objects.create(list_aset=listaset)
+            return redirect('aset')
+    data = Aset.objects.all()
+    return render(request, 'aset.html', {'data': data})
+
+def delete_aset(request, asetid):
+    Aset.objects.filter(asetid=asetid).delete()
+    return redirect('aset')
+
+def edit_aset(request, asetid):
+    if request.method == 'POST':
+        value = request.POST.get('list_aset')
+        if value:
+            Aset.objects.filter(asetid=asetid).update(aset=value)
+    return redirect('aset')
 
 def e1(request):
     if request.method == 'POST':
@@ -119,3 +139,90 @@ def edit_e4(request, e4id):
         if value:
             Elemen4.objects.filter(e4id=e4id).update(e4=value)
     return redirect('e4')
+
+def e5(request):
+    if request.method == 'POST':
+        liste5 = request.POST.get('e5')
+        if liste5:
+            Elemen5.objects.create(e5=liste5)
+            return redirect('e5')
+    data = Elemen5.objects.all()
+    return render(request, 'e5.html', {'data': data})
+
+def delete_e5(request, e5id):
+    Elemen5.objects.filter(e5id=e5id).delete()
+    return redirect('e5')
+
+def edit_e5(request, e5id):
+    if request.method == 'POST':
+        value = request.POST.get('e5')
+        if value:
+            Elemen5.objects.filter(e5id=e5id).update(e5=value)
+    return redirect('e5')
+
+def e6(request):
+    if request.method == 'POST':
+        liste6 = request.POST.get('e6')
+        if liste6:
+            Elemen6.objects.create(e6=liste6)
+            return redirect('e6')
+    data = Elemen6.objects.all()
+    return render(request, 'e6.html', {'data': data})
+
+def delete_e6(request, e6id):
+    Elemen6.objects.filter(e6id=e6id).delete()
+    return redirect('e6')
+
+def edit_e6(request, e6id):
+    if request.method == 'POST':
+        value = request.POST.get('e6')
+        if value:
+            Elemen6.objects.filter(e6id=e6id).update(e6=value)
+    return redirect('e6')
+
+def e7(request):
+    if request.method == 'POST':
+        liste7 = request.POST.get('e7')
+        if liste7:
+            Elemen7.objects.create(e7=liste7)
+            return redirect('e7')
+    data = Elemen7.objects.all()
+    return render(request, 'e7.html', {'data': data})
+
+def delete_e7(request, e7id):
+    Elemen7.objects.filter(e7id=e7id).delete()
+    return redirect('e7')
+
+def edit_e7(request, e7id):
+    if request.method == 'POST':
+        value = request.POST.get('e7')
+        if value:
+            Elemen7.objects.filter(e7id=e7id).update(e7=value)
+    return redirect('e7')
+
+def e8(request):
+    if request.method == 'POST':
+        liste8 = request.POST.get('e8')
+        if liste8:
+            Elemen8.objects.create(e8=liste8)
+            return redirect('e8')
+    data = Elemen8.objects.all()
+    return render(request, 'e8.html', {'data': data})
+
+def delete_e8(request, e8id):
+    Elemen8.objects.filter(e8id=e8id).delete()
+    return redirect('e8')
+
+def edit_e8(request, e8id):
+    if request.method == 'POST':
+        value = request.POST.get('e8')
+        if value:
+            Elemen8.objects.filter(e8id=e8id).update(e8=value)
+    return redirect('e8')
+
+def logout(request):
+    try:
+        del request.session['id'] 
+    except KeyError:
+        pass 
+    return redirect('login')  

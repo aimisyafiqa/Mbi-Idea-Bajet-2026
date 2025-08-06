@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ELEMEN 4</title>
+  <title>ASET</title>
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <style>
     * {
@@ -129,7 +129,7 @@
   background-color: #e1e7ec;
 }
   
-  </style>
+</style>
 </head>
 <body>
 
@@ -162,20 +162,20 @@
     </div>
     <form id="createForm" method="post" style="display:none; margin-bottom:16px;">
         {% csrf_token %}
-        <input type="text" name="e4" placeholder="Tambah Elemen Baharu" required>
+        <input type="text" name="list_aset" placeholder="Tambah Lokasi Baharu" required>
         <button type="submit" class="btn-create">Save</button>
     </form>
     <table class="table table-bordered" id="item_table1">
         <tr>
-            <th>Senarai Elemen 4</th>
+            <th>Senarai Lokasi</th>
             <th>Action</th>
         </tr>
         {% for item in data %}
         <tr>
-          <td>{{ item.e4 }}</td>
+          <td>{{ item.list_aset }}</td>
           <td>
-        <button class="btn-create" onclick="editRow({{ item.e4id }})">Edit</button>
-        <form method="post" action="{% url 'delete_e4' item.e4id %}" style="display:inline;">
+        <button class="btn-create" onclick="editRow({{ item.asetid }})">Edit</button>
+        <form method="post" action="{% url 'delete_lokasi' item.asetid %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
         </form>

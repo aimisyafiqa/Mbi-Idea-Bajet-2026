@@ -127,7 +127,7 @@
 .table tr:hover {
   background-color: #e1e7ec;
 }
-
+  
   </style>
 </head>
 <body>
@@ -142,15 +142,16 @@
     <div class="sidebar">
       <ul>
         <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>
+        <li><a href="{% url 'aset' %}">ASET</a></li>
         <li><a href="{% url 'lokasi' %}">LOKASI</a></li>
         <li><a href="{% url 'e1' %}">ELEMEN 1: IPOH BANDAR TERBERSIH</a></li>
         <li><a href="{% url 'e2' %}">ELEMEN 2: KEMUDAHAN AWAM DAN TAMAN</a></li>
         <li><a href="{% url 'e3' %}">ELEMEN 3: KEMUDAHAN INFRASTRUKTUR</a></li>
         <li><a href="{% url 'e4' %}">ELEMEN 4: BANGUNAN DAN HARTANAH MAJLIS</a></li>
-        <li><a href="#">ELEMEN 5: HARTA MODAL (ASET)</a></li>
-        <li><a href="#">ELEMEN 6: IPOH BANDAR (BANDAR PINTAR)</a></li>
-        <li><a href="#">ELEMEN 7: IPOH BANDAR (BANDAR RENDAH KARBON)</a></li>
-        <li><a href="#">ELEMEN 8: PEMBANGUNAN EKONOMI MASYARAKAT DAN PELANCONGAN</a></li>
+        <li><a href="{% url 'e5' %}">ELEMEN 5: HARTA MODAL (ASET)</a></li>
+        <li><a href="{% url 'e6' %}">ELEMEN 6: IPOH BANDAR (BANDAR PINTAR)</a></li>
+        <li><a href="{% url 'e7' %}">ELEMEN 7: IPOH BANDAR (BANDAR RENDAH KARBON)</a></li>
+        <li><a href="{% url 'e8' %}">ELEMEN 8: PEMBANGUNAN EKONOMI MASYARAKAT DAN PELANCONGAN</a></li>
       </ul>
     </div>
   
@@ -165,24 +166,24 @@
     </form>
     <table class="table table-bordered" id="item_table1">
         <tr>
-            <th>Senarai Elemen 2: Kemudahan Awam dan Taman</th>
+            <th>Senarai Elemen 2</th>
             <th>Action</th>
         </tr>
         {% for item in data %}
-<tr id="row-{{ item.e2id }}">
-  <td id="lokasi-{{ item.e2id }}">{{ item.e2 }}</td>
-  <td id="action-{{ item.e2id }}">
-    <button class="btn-create" onclick="editRow({{ item.e2id }}, '{{ item.e2|escapejs }}')">Edit</button>
-    <form method="post" action="{% url 'delete_e2' item.e2id %}" style="display:inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-    </form>
-  </td>
+        <tr>
+          <td>{{ item.e2 }}</td>
+          <td>
+        <button class="btn-create" onclick="editRow({{ item.e2id }})">Edit</button>
+        <form method="post" action="{% url 'delete_e2' item.e2id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
+        </form>
+    </td>
 </tr>
 {% empty %}
 <tr>
     <td colspan="2">Tiada data.</td>
-</tr
+</tr>
 {% endfor %}
     </table>
 </div>
@@ -190,32 +191,6 @@
 <script>
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
-
-function editRow(id, e2) {
-  var editUrl = "{% url 'edit_e2' 0 %}".replace('0', id);
-  document.getElementById('lokasi-' + id).innerHTML = `
-    <form id="editForm-${id}" method="post" action="` + editUrl + `" style="display:inline;">
-      {% csrf_token %}
-      <input type="text" name="e2" value="` + e2 + `" required>
-    </form>
-  `;
-  document.getElementById('action-' + id).innerHTML = `
-    <button type="submit" form="editForm-${id}" class="btn-create">Save</button>
-    <button type="button" class="btn-create" style="background:#e74c3c;" onclick="cancelEdit(${id}, '${e2.replace(/'/g, "\\'")}')">Cancel</button>
-  `;
-}
-
-function cancelEdit(id, e2) {
-  var deleteUrl = "{% url 'delete_e2' 0 %}".replace('0', id);
-  document.getElementById('lokasi-' + id).textContent = e2;
-  document.getElementById('action-' + id).innerHTML = `
-    <button class="btn-create" onclick="editRow(${id}, '${e2.replace(/'/g, "\\'")}')">Edit</button>
-    <form method="post" action="` + deleteUrl + `" style="display:inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-    </form>
-  `;
-}
 </script>
 
 </body>

@@ -10,6 +10,14 @@ class Lokasi(models.Model):
     lid = models.AutoField(primary_key=True)
     list_lokasi = models.CharField(max_length=255)
 
+class Aset(models.Model):
+    asetid = models.AutoField(primary_key=True)
+    list_aset = models.CharField(max_length=255)
+
+class Elemen8(models.Model):
+    asetid = models.AutoField(primary_key=True)
+    list_aset = models.TextField()
+
 class Elemen1(models.Model):
     e1id = models.AutoField(primary_key=True)
     e1 = models.TextField()
@@ -26,10 +34,13 @@ class Elemen4(models.Model):
     e4id = models.AutoField(primary_key=True)
     e4 = models.TextField()
 
+<<<<<<< HEAD
 class Aset(models.Model):
     asetid = models.AutoField(primary_key=True)
     list_aset = models.CharField(max_length=255)
 
+=======
+>>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
 class Elemen5(models.Model):
     e5id = models.AutoField(primary_key=True)
     e5 = models.TextField()

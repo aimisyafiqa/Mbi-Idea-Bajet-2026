@@ -92,14 +92,12 @@
   .btn-create:hover {
     background-color: #219150;
   }
-  .table th {
-  background-color: #34495e;
-  color: #fff;
-}
+
 
 .table td {
   color: #222;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -128,9 +126,13 @@
 .table tr:hover {
   background-color: #e1e7ec;
 }
+<<<<<<< HEAD
 .logout-btn {
   margin-left: 24px;
 }
+=======
+  
+>>>>>>> 9370447247fec3a70055dd911b5f413c59e542d3
   </style>
 </head>
 <body>
@@ -173,57 +175,31 @@
     </form>
     <table class="table table-bordered" id="item_table1">
         <tr>
-            <th>Senarai Elemen 1: Ipoh Bandar Terbersih</th>
+            <th>Senarai Elemen 1</th>
             <th>Action</th>
         </tr>
-  {% for item in data %}
-    <tr id="row-{{ item.e1id }}">
-      <td id="lokasi-{{ item.e1id }}">{{ item.e1 }}</td>
-      <td id="action-{{ item.e1id }}">
-        <button class="btn-create" onclick="editRow({{ item.e1id }}, '{{ item.e1|escapejs }}')">Edit</button>
+        {% for item in data %}
+        <tr>
+          <td>{{ item.e1 }}</td>
+          <td>
+        <button class="btn-create" onclick="editRow({{ item.e1id }})">Edit</button>
         <form method="post" action="{% url 'delete_e1' item.e1id %}" style="display:inline;">
-          {% csrf_token %}
-          <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
+            {% csrf_token %}
+            <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
         </form>
-      </td>
-    </tr>
-  {% empty %}
+    </td>
+</tr>
+{% empty %}
 <tr>
     <td colspan="2">Tiada data.</td>
 </tr>
-  {% endfor %}
+{% endfor %}
     </table>
 </div>
 
 <script>
 function showForm() {
     document.getElementById('createForm').style.display = 'block';}
-
-function editRow(id, e1) {
-  var editUrl = "{% url 'edit_e1' 0 %}".replace('0', id);
-  document.getElementById('lokasi-' + id).innerHTML = `
-    <form id="editForm-${id}" method="post" action="` + editUrl + `" style="display:inline;">
-      {% csrf_token %}
-      <input type="text" name="e1" value="` + e1 + `" required>
-    </form>
-  `;
-  document.getElementById('action-' + id).innerHTML = `
-    <button type="submit" form="editForm-${id}" class="btn-create">Save</button>
-    <button type="button" class="btn-create" style="background:#e74c3c;" onclick="cancelEdit(${id}, '${e1.replace(/'/g, "\\'")}')">Cancel</button>
-  `;
-}
-
-function cancelEdit(id, e1) {
-  var deleteUrl = "{% url 'delete_e1' 0 %}".replace('0', id);
-  document.getElementById('lokasi-' + id).textContent = e1;
-  document.getElementById('action-' + id).innerHTML = `
-    <button class="btn-create" onclick="editRow(${id}, '${e1.replace(/'/g, "\\'")}')">Edit</button>
-    <form method="post" action="` + deleteUrl + `" style="display:inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn-create" style="background:#e74c3c;">Delete</button>
-    </form>
-  `;
-}
 </script>
 
 </body>

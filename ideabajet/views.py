@@ -33,6 +33,13 @@ def delete_lokasi(request, lid):
     Lokasi.objects.filter(lid=lid).delete()
     return redirect('lokasi')
 
+def edit_lokasi(request, lid):
+    if request.method == 'POST':
+        listloc = request.POST.get('list_lokasi')
+        if listloc:
+            Lokasi.objects.filter(lid=lid).update(list_lokasi=listloc)
+    return redirect('lokasi')
+
 def e1(request):
     if request.method == 'POST':
         liste1 = request.POST.get('e1')
@@ -44,6 +51,13 @@ def e1(request):
 
 def delete_e1(request, e1id):
     Elemen1.objects.filter(e1id=e1id).delete()
+    return redirect('e1')
+
+def edit_e1(request, e1id):
+    if request.method == 'POST':
+        liste1 = request.POST.get('e1')
+        if liste1:
+            Elemen1.objects.filter(e1id=e1id).update(e1=liste1)
     return redirect('e1')
 
 def e2(request):
@@ -59,6 +73,13 @@ def delete_e2(request, e2id):
     Elemen2.objects.filter(e2id=e2id).delete()
     return redirect('e2')
 
+def edit_e2(request, e2id):
+    if request.method == 'POST':
+        value = request.POST.get('e2')
+        if value:
+            Elemen2.objects.filter(e2id=e2id).update(e2=value)
+    return redirect('e2')
+
 def e3(request):
     if request.method == 'POST':
         liste3 = request.POST.get('e3')
@@ -70,6 +91,13 @@ def e3(request):
 
 def delete_e3(request, e3id):
     Elemen3.objects.filter(e3id=e3id).delete()
+    return redirect('e3')
+
+def edit_e3(request, e3id):
+    if request.method == 'POST':
+        value = request.POST.get('e3')
+        if value:
+            Elemen3.objects.filter(e3id=e3id).update(e3=value)
     return redirect('e3')
 
 def e4(request):
@@ -85,3 +113,9 @@ def delete_e4(request, e4id):
     Elemen4.objects.filter(e4id=e4id).delete()
     return redirect('e4')
 
+def edit_e4(request, e4id):
+    if request.method == 'POST':
+        value = request.POST.get('e4')
+        if value:
+            Elemen4.objects.filter(e4id=e4id).update(e4=value)
+    return redirect('e4')
